@@ -6,15 +6,15 @@ pipeline {
         node('clrvm') {
           sh '''#!/bin/bash
 hostname
-lscpu
+cat /etc/os-release
 sleep 3
 uname -a'''
         }
         node('ubuntuvm'){
           sh '''#!/bin/bash
 hostname
-lscpu
-sleep 15
+cat /etc/os-release
+sleep 5
 uname -a'''
              }
       }
