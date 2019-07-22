@@ -1,22 +1,26 @@
 pipeline {
-  agent none
+  
   stages {
-    stage('Clear_Test') {
+    agent {
+      node 'clrvm'
+    }
+    stage('Clear_Test 1') {
       steps {
-        node('clrvm') {
           sh '''#!/bin/bash
 hostname
+echo "test 1"
 cat /etc/os-release
 sleep 3
 uname -a'''
-        }
-        node('ubuntuvm'){
+      }
+    }
+     stage('Clear_Test 2') {
+      steps {
           sh '''#!/bin/bash
-hostname
+echo "test 2"
 cat /etc/os-release
-sleep 5
+sleep 3
 uname -a'''
-             }
       }
     }
   }
