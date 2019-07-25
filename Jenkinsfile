@@ -15,7 +15,9 @@ uname -a'''
           script {
               def slaveCIP = InetAddress.localHost.hostAddress
               println "Agent located at ${slaveCIP}"
-      }
+      
+        }
+     }
     }
      stage('Clear_Test 2') {
       
@@ -53,4 +55,3 @@ uname -a'''
       }
     }
   }
-}
