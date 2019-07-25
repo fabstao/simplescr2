@@ -13,7 +13,7 @@ hostname
 cat /etc/os-release
 uname -a'''
           script {
-              def slaveCIP = InetAddress.localHost.hostAddress
+              def slaveCIP = InetAddress.localHost.canonicalHostName
               println "Agent located at ${slaveCIP}"
               echo "Agente: ${slaveCIP}"
         }
@@ -44,12 +44,12 @@ cat /etc/os-release
 sleep 2
 uname -a'''
           script {
-              def slaveUIP = InetAddress.localHost.hostAddress
+              def slaveUIP = InetAddress.InetAddress.localHost.canonicalHostName
               println "Agent located at ${slaveUIP}"
             echo "Agente: ${slaveUIP}"
               def nodes = 1
               for (int i = 0; i < nodes; ++i) {
-                  echo "Testing the ${i} node"
+                  echo "Testing the ${i} node ${slaveUIP}"
                  }
           }
         }
