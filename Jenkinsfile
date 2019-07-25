@@ -15,9 +15,9 @@ uname -a'''
           script {
               def slaveCIP = InetAddress.localHost.hostAddress
               println "Agent located at ${slaveCIP}"
-      
+              echo "Agente: ${slaveCIP}"
         }
-        sh "echo ${slaveCIP}"
+        
      }
     }
      stage('Clear_Test 2') {
@@ -46,6 +46,7 @@ uname -a'''
           script {
               def slaveUIP = InetAddress.localHost.hostAddress
               println "Agent located at ${slaveUIP}"
+            echo "Agente: ${slaveUIP}"
               def nodes = 1
               for (int i = 0; i < nodes; ++i) {
                   echo "Testing the ${i} node"
