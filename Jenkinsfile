@@ -17,6 +17,7 @@ uname -a'''
               println "Agent located at ${slaveCIP}"
       
         }
+        sh "echo ${slaveCIP}"
      }
     }
      stage('Clear_Test 2') {
@@ -29,7 +30,6 @@ hostname
 cat /etc/os-release
 sleep 2
 uname -a'''
-          sh "echo ${slaveCIP}"
       }
     }
     stage('Ubuntu_Test 1') {
