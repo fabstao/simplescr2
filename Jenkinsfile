@@ -44,9 +44,9 @@ cat /etc/os-release
 sleep 2
 uname -a'''
           script {
-              def slaveUIP = InetAddress.InetAddress.localHost.canonicalHostName
+              def slaveUIP = InetAddress.localHost.canonicalHostName
               println "Agent located at ${slaveUIP}"
-            echo "Agente: ${slaveUIP}"
+              echo "Agente: ${slaveUIP}"
               def nodes = 1
               for (int i = 0; i < nodes; ++i) {
                   echo "Testing the ${i} node ${slaveUIP}"
