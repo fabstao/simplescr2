@@ -12,7 +12,7 @@ echo "test 1"
 hostname
 echo "test 1"
 cat /etc/os-release
-sleep 3
+sleep 2
 uname -a'''
       }
     }
@@ -22,7 +22,7 @@ uname -a'''
 echo "test 2"
 hostname
 cat /etc/os-release
-sleep 3
+sleep 2
 uname -a'''
       }
     }
@@ -35,7 +35,7 @@ uname -a'''
 echo "test UBUNTU 1"
 hostname
 cat /etc/os-release
-sleep 3
+sleep 2
 uname -a'''
       }
     }
