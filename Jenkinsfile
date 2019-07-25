@@ -17,9 +17,10 @@ uname -a'''
       }
     }
      stage('Clear_Test 2') {
+      def slaveCIP = InetAddress.localHost.hostAddress
+      println "Agent located at ${slaveCIP}"
       steps {
-          def slaveCIP = InetAddress.localHost.hostAddress
-          println "Agent located at ${slaveCIP}"
+          
           sh '''#!/bin/bash
 echo "test 2"
 hostname
@@ -33,9 +34,10 @@ uname -a'''
        agent {
       node 'ubuntuvm'
     }
+      def slaveUIP = InetAddress.localHost.hostAddress
+      println "Agent located at ${slaveUIP}"
       steps {
-          def slaveUIP = InetAddress.localHost.hostAddress
-          println "Agent located at ${slaveUIP}"
+          
           sh '''#!/bin/bash
 echo "test UBUNTU 1"
 hostname
