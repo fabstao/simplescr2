@@ -48,6 +48,7 @@ uname -a'''
               for (int i = 0; i < nodes; ++i) {
                   echo "Testing the ${i} node"
                  }
+          }
       }
     }
   }
