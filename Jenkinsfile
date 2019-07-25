@@ -16,7 +16,7 @@ uname -a'''
               def slaveCIP = InetAddress.localHost.canonicalHostName
               println "Agent located at ${slaveCIP}"
               echo "Agente: ${slaveCIP}"
-              def myip = "ip a | awk '/inet6|127/ {next;} /inet/ {print $2}' | sed 's/\/[0-9][0-9]//g'".execute().text
+              def myip = "ip a | awk '/inet6|127/ {next;} /inet/ {print \$2}' | sed 's/\/[0-9][0-9]//g'".execute().text
               echo "Agente: ${myip}"
         }
         
@@ -46,7 +46,7 @@ cat /etc/os-release
 sleep 2
 uname -a'''
           script {
-              def myip = "ip a | awk '/inet6|127/ {next;} /inet/ {print $2}' | sed 's/\/[0-9][0-9]//g'".execute().text
+              def myip = "ip a | awk '/inet6|127/ {next;} /inet/ {print \$2}' | sed 's/\/[0-9][0-9]//g'".execute().text
               echo "Agente: ${myip}"
               def nodes = 1
               for (int i = 0; i < nodes; ++i) {
