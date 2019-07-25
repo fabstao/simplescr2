@@ -49,6 +49,7 @@ uname -a'''
                   echo "Testing the ${i} node"
                  }
           }
+        }
       }
     }
   }
