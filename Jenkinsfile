@@ -10,15 +10,15 @@ pipeline {
           sh '''#!/bin/bash
 echo "test 1"
 hostname
-echo "test 1"
 cat /etc/os-release
-sleep 2
 uname -a'''
+          script {
+              def slaveCIP = InetAddress.localHost.hostAddress
+              println "Agent located at ${slaveCIP}"
       }
     }
      stage('Clear_Test 2') {
-      def slaveCIP = InetAddress.localHost.hostAddress
-      println "Agent located at ${slaveCIP}"
+      
       steps {
           
           sh '''#!/bin/bash
@@ -34,17 +34,20 @@ uname -a'''
        agent {
       node 'ubuntuvm'
     }
-      def slaveUIP = InetAddress.localHost.hostAddress
-      println "Agent located at ${slaveUIP}"
       steps {
-          
           sh '''#!/bin/bash
 echo "test UBUNTU 1"
 hostname
 cat /etc/os-release
 sleep 2
 uname -a'''
-          sh "echo ${slaveUIP}"
+          script {
+              def slaveUIP = InetAddress.localHost.hostAddress
+              println "Agent located at ${slaveUIP}"
+              def nodes = 1
+              for (int i = 0; i < nodes; ++i) {
+                  echo "Testing the ${i} node"
+                 }
       }
     }
   }
