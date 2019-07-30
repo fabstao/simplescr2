@@ -9,6 +9,7 @@ pipeline {
       steps {
           sh '''#!/bin/bash
 whoami
+hostname
 curl https://gitlab.devtools.intel.com/snippets/536/raw > /tmp/envs.sh
 source /tmp/envs.sh
 sudo swupd bundle-add cloud-native-basic
@@ -54,6 +55,7 @@ uname -a'''
       steps {
           sh '''#!/bin/bash
 whoami
+hostname
 echo "Starting commissioning of worker node"
 curl https://gitlab.devtools.intel.com/snippets/536/raw > envs.sh
 source envs.sh
