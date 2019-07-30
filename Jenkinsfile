@@ -9,14 +9,15 @@ pipeline {
       steps {
           sh '''#!/bin/bash
 whoami
-curl https://gitlab.devtools.intel.com/snippets/536/raw > envs.sh
-source envs.sh
+curl https://gitlab.devtools.intel.com/snippets/536/raw > /tmp/envs.sh
+source /tmp/envs.sh
 sudo swupd bundle-add cloud-native-basic
 sudo su - -c "mv /usr/share/clr-k8s-examples/kubeadm.yaml /usr/share/clr-k8s-examples/kubeadm.yaml.old"
 unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY no_proxy
 sudo curl https://gitlab.devtools.intel.com/snippets/538/raw > /tmp/kubeadm.yaml
 sudo su - -c "mv /tmp/kubeadm.yaml /usr/share/clr-k8s-examples/"
 cd /usr/share/clr-k8s-examples
+source /tmp/envs.sh
 sudo ./setup_system.sh
 sudo ./create_stack.sh minimal<<EOF
 
