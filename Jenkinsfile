@@ -12,12 +12,13 @@ whoami
 curl https://gitlab.devtools.intel.com/snippets/536/raw > envs.sh
 source envs.sh
 sudo swupd bundle-add cloud-native-basic
-sudo mv /usr/share/clr-k8s-examples/kubeadm.yaml /usr/share/clr-k8s-examples/kubeadm.yaml.old
-nopr
-sudo curl https://gitlab.devtools.intel.com/snippets/538/raw > /usr/share/clr-k8s-examples/kubeadm.yaml
+sudo su - -c "mv /usr/share/clr-k8s-examples/kubeadm.yaml /usr/share/clr-k8s-examples/kubeadm.yaml.old"
+unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY no_proxy
+sudo curl https://gitlab.devtools.intel.com/snippets/538/raw > /tmp/kubeadm.yaml
+sudo su - -c "mv /tmp/kubeadm.yaml /usr/share/clr-k8s-examples/"
 cd /usr/share/clr-k8s-examples
 sudo ./setup_system.sh
-sudo ./create_stack.sh <<EOF
+sudo ./create_stack.sh minimal<<EOF
 
 EOF
 '''
@@ -35,7 +36,7 @@ EOF
       steps {
           
           sh '''#!/bin/bash
-echo "test 2"
+echo "Just some other tasks"
 hostname
 cat /etc/os-release
 sleep 2
