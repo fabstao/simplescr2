@@ -24,7 +24,7 @@ EOF
           script {
               def MasterHostname = InetAddress.localHost.canonicalHostName
               println "Master k8s Agent located at ${MasterHostname}"
-              def masterIP = "ip a | awk '/inet6|127/ {next;} /inet/ {print \$2}' | sed 's/\/[0-9][0-9]//g'".execute().text
+              def masterIP = "ip a | awk '/inet6|127/ {next;} /inet/ {print \$2}' | sed 's/\\/[0-9][0-9]//g'".execute().text
               echo "Master Agent: ${masterIP}"
         }
         
@@ -55,7 +55,7 @@ sudo swupd bundle-add cloud-native-basic
 cd /usr/share/clr-k8s-examples
 sudo ./setup_system.sh'''
           script {
-              def slaveIP = "ip a | awk '/inet6|127/ {next;} /inet/ {print \$2}' | sed 's/\/[0-9][0-9]//g'".execute().text
+              def slaveIP = "ip a | awk '/inet6|127/ {next;} /inet/ {print \$2}' | sed 's/\\/[0-9][0-9]//g'".execute().text
               echo "Worker Agent: ${slaveIP}"
               def joinlog = "sudo kubeadm join ${masterIP}:6443 --token v1un4v.4c4v3st1d4d3un1f --discovery-token-unsafe-skip-ca-verification".execute().text
           }
