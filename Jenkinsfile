@@ -16,12 +16,15 @@ sudo su - -c "mv /usr/share/clr-k8s-examples/kubeadm.yaml /usr/share/clr-k8s-exa
 unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY no_proxy
 sudo curl https://gitlab.devtools.intel.com/snippets/538/raw > /tmp/kubeadm.yaml
 sudo su - -c "mv /tmp/kubeadm.yaml /usr/share/clr-k8s-examples/"
+grep -i token /usr/share/clr-k8s-examples/kubeadm.yaml
 cd /usr/share/clr-k8s-examples
 source /tmp/envs.sh
 sudo ./setup_system.sh
+echo "Installing K8s"
 sudo ./create_stack.sh minimal<<EOF
 
 EOF
+echo "End of initial process"
 '''
           script {
               def MasterHostname = InetAddress.localHost.canonicalHostName
@@ -51,6 +54,7 @@ uname -a'''
       steps {
           sh '''#!/bin/bash
 whoami
+echo "Starting commissioning of worker node"
 curl https://gitlab.devtools.intel.com/snippets/536/raw > envs.sh
 source envs.sh
 sudo swupd bundle-add cloud-native-basic
